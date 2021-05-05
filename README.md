@@ -139,7 +139,6 @@ test用ユーザー<br>
 使用画面(申込, 管理画面(SPA))<br>
 <br>
 
-<br>
 # デプロイ手順
 docker-compose up -d<br>
 docker exec -it db bash<br>
@@ -159,7 +158,7 @@ docker exec -it php bash<br>
 　　chmod -R 777 bootstrap/cache<br>
 <br>
 
-# wslの場合DNSエラーが起こる
+# DNSエラーが発生する場合
 https://ittechnicalmemos.blogspot.com/2020/05/dockernpm-installeaiagainlinux.html<br>
 sudo vim /etc/docker/daemon.json<br>
   {<br>
