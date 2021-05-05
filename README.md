@@ -140,6 +140,8 @@ docker exec -it db bash<br>
 　　- mysql> exit;<br>
 　　exit<br>
 <br>
+
+cp project/.env.sample project/.env
 docker exec -it php bash<br>
 　　composer install<br>
 　　npm install<br>
