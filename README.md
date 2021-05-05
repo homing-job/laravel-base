@@ -141,7 +141,7 @@ docker exec -it db bash<br>
 　　exit<br>
 <br>
 
-cp project/.env.sample project/.env
+cp project/.env.sample project/.env<br>
 docker exec -it php bash<br>
 　　composer install<br>
 　　npm install<br>
