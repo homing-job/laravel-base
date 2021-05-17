@@ -2,8 +2,6 @@
 入力ページ、入力内容確認ページ、完了ページ<br>
 それに伴う管理画面<br>
 <br>
-https://portfolio-rito.net/<br>
-<br>
 test用ユーザー<br>
 メールアドレス:test@test.co.jp<br>
 パスワード:test<br>
@@ -58,12 +56,12 @@ test用ユーザー<br>
 
 | 申込同意　| 申込  |
 | :----: | :----: |
-| <img src="https://user-images.githubusercontent.com/72111956/107872605-b1408700-6eee-11eb-93bc-f0bc2ef7329f.png">   | <img src="https://user-images.githubusercontent.com/72111956/107872607-b1d91d80-6eee-11eb-812d-406d8fd36ba0.png">   |
+| <img src="https://user-images.githubusercontent.com/72111956/107872605-b1408700-6eee-11eb-93bc-f0bc2ef7329f.png">   | <img src="https://user-images.githubusercontent.com/72111956/118478825-47cd5000-b74b-11eb-80a7-580b560b945d.png">   |
 <br>
 
 | 申込確認 | 申込完了 |
 | :----: | :----: |
-| <img src="https://user-images.githubusercontent.com/72111956/107872608-b271b400-6eee-11eb-9ce6-f4219c2a23e5.png"> | <img src="https://user-images.githubusercontent.com/72111956/107872760-d681c500-6eef-11eb-9ff4-047be1499554.png"> |
+| <img src="https://user-images.githubusercontent.com/72111956/118478818-4734b980-b74b-11eb-8a2d-cf36e41b1c21.png"> | <img src="https://user-images.githubusercontent.com/72111956/107872760-d681c500-6eef-11eb-9ff4-047be1499554.png"> |
 <br>
 
 管理画面
