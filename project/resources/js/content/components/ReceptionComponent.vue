@@ -1,7 +1,7 @@
 <template>
     <div>
         <loading :isLoading="!loadComplete"></loading>
-        
+
         <div v-if="loadComplete">
             <div class="card" style="width:90%" hidden>
                 <div class="card-header">エラー</div>
@@ -19,7 +19,7 @@
             </div>
 
             <b-container fluid class="py-4">
-                <p>下記項目に入力の上、確認画面に進んでください。</p>
+                <p>希望競技と参加者の詳細を入力の上、確認画面に進んでください。</p>
                 <!-- 希望競技 -->
                 <b-card header="希望競技" header-tag="header">
                     <b-row>
@@ -52,70 +52,6 @@
                         <b-col lg="12">
                             <b-form-group label="希望日" v-slot="{ ariaDescribedby }" :invalid-feedback="errors_reception.kyogi_hope_date" :state="input_state(errors_reception.kyogi_hope_date)">
                                 <b-form-radio-group name="kyogi_hope_date" v-model="reception.kyogi_hope_date" :options="selctedKyogiDates" :aria-describedby="ariaDescribedby" :state="input_state(errors_reception.kyogi_hope_date)"></b-form-radio-group>
-                            </b-form-group>
-                        </b-col>
-                    </b-row>
-                </b-card>
-
-                <!-- 交通手段 -->
-                <b-card header="交通手段" header-tag="header" class="mt-3">
-                    <b-row>
-                        <b-col lg="12">
-                            <b-form-group label="開会式" label-class="raizyo" v-slot="{ ariaDescribedby }" :invalid-feedback="errors_reception.raizyo" :state="input_state(errors_reception.raizyo)">
-                                <b-form-radio-group name="raizyo" v-model="reception.raizyo" :options="constValues.move" :aria-describedby="ariaDescribedby" :state="input_state(errors_reception.raizyo)"></b-form-radio-group>
-                            </b-form-group>
-                        </b-col>
-                    </b-row>
-
-                    <b-row v-show="showRaizyoNumberPlate()">
-                        <b-col lg="12">
-                            <b-form-group label="自家用車の場合" label-for="kbn" :invalid-feedback="errors_reception.raizyo_number_plate" :state="input_state(errors_reception.raizyo_number_plate)">
-                                <b-form-input v-model="reception.raizyo_number_plate" placeholder="ナンバープレート" :state="input_state(errors_reception.raizyo_number_plate)"></b-form-input>
-                            </b-form-group>
-                        </b-col>
-                    </b-row>
-
-                    <b-row v-show="showRaizyoKokyokotu()">
-                        <b-col lg="12">
-                            <b-form-group label="公共交通機関" label-for="cond_kbn" :invalid-feedback="errors_reception.raizyo_kotukikan" :state="input_state(errors_reception.raizyo_kotukikan)">
-                                <b-input-group>
-                                    <b-form-select name="raizyo_kotukikan" v-model="reception.raizyo_kotukikan" :options="constValues.koutukikan" :state="input_state(errors_reception.raizyo_kotukikan)"></b-form-select>
-                                </b-input-group>
-                            </b-form-group>
-                        </b-col>
-                    </b-row>
-
-
-                    <b-row>
-                        <b-col lg="12">
-                            <b-form-group label="">
-                                <b-form-checkbox v-on:click="setTaizyo()" v-model="equalRaizyo">開会式と閉会式は同じ</b-form-checkbox>
-                            </b-form-group>
-                        </b-col>
-                    </b-row>
-
-                    <b-row>
-                        <b-col lg="12">
-                            <b-form-group label="閉会式" v-slot="{ ariaDescribedby }" :invalid-feedback="errors_reception.taizyo" :state="input_state(errors_reception.taizyo)">
-                                <b-form-radio-group name="taizyo" v-model="reception.taizyo" :options="constValues.move" :aria-describedby="ariaDescribedby" v-bind:disabled="equalRaizyo" :state="input_state(errors_reception.taizyo)"></b-form-radio-group>
-                            </b-form-group>
-                        </b-col>
-                    </b-row>
-
-                    <b-row v-show="showTaizyoNumberPlate()">
-                        <b-col lg="12">
-                            <b-form-group label="自家用車の場合" :invalid-feedback="errors_reception.taizyo_number_plate" :state="input_state(errors_reception.taizyo_number_plate)">
-                                <b-form-input name="taizyo_number_plate" v-model="reception.taizyo_number_plate" v-bind:disabled="equalRaizyo" placeholder="ナンバープレート" :state="input_state(errors_reception.taizyo_number_plate)">></b-form-input>
-                            </b-form-group>
-                        </b-col>
-                    </b-row>
-
-                    <b-row v-show="showTaizyoKokyokotu()">
-                        <b-col lg="12">
-                            <b-form-group label="公共交通機関" label-for="cond_kbn" :invalid-feedback="errors_reception.taizyo_kotukikan" :state="input_state(errors_reception.taizyo_kotukikan)">
-                                <b-input-group>
-                                    <b-form-select v-model="reception.taizyo_kotukikan" :options="constValues.koutukikan" v-bind:disabled="equalRaizyo" :state="input_state(errors_reception.taizyo_kotukikan)"></b-form-select>
-                                </b-input-group>
                             </b-form-group>
                         </b-col>
                     </b-row>
@@ -168,25 +104,9 @@
                 kyogis: [],
                 options:{kyogiNm:[],
                 },
-                equalRaizyo: false,
                 errors_reception: {},
                 errors_reception_members: [{}, {}, {}, {}],
             }
-        },
-        watch: {
-            reception: {
-                handler: function (val) {
-                    if(this.equalRaizyo){
-                        this.setTaizyo();    
-                    }
-                },
-                deep: true
-            },
-            equalRaizyo: {
-                handler: function (val) {
-                    this.setTaizyo();
-                }
-            },
         },
         mounted() {
             this.initReception();
@@ -214,32 +134,6 @@
             initError: function () {
                 this.errors_reception = {};
                 this.errors_reception_members = [{}, {}, {}, {}];
-            },
-            // 総合閉会式セット
-            setSogouTaizyo: function () {
-                this.reception.sogou_taizyo = this.reception.sogou_raizyo;
-            },
-            // 閉会式セット
-            setTaizyo: function () {
-                this.reception.taizyo = this.reception.raizyo;
-                this.reception.taizyo_number_plate = this.reception.raizyo_number_plate;
-                this.reception.taizyo_kotukikan = this.reception.raizyo_kotukikan;
-            },
-            // 公共交通機関表示(開会式)
-            showRaizyoKokyokotu: function(){
-                return this.reception.raizyo == constCds.move.公共交通機関;
-            },
-            // 公共交通機関表示(閉会式)
-            showTaizyoKokyokotu: function(){
-                return this.reception.taizyo == constCds.move.公共交通機関;
-            },
-            // ナンバープレート表示(開会式)
-            showRaizyoNumberPlate: function(){
-                return this.reception.raizyo == constCds.move.自家用車;
-            },
-            // ナンバープレート表示(閉会式)
-            showTaizyoNumberPlate: function(){
-                return this.reception.taizyo == constCds.move.自家用車;
             },
             // 観覧希望日ﾘｾｯﾄ
             resetKyogiHopeDate: function(){

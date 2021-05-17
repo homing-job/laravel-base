@@ -18,12 +18,6 @@ class CraeteReceptionsTable extends Migration
             $table->integer('reception_no')->unsigned();
             $table->integer('kyogi_id');
             $table->date('kyogi_hope_date');
-            $table->string('raizyo');
-            $table->string('raizyo_number_plate')->nullable();
-            $table->string('raizyo_kotukikan')->nullable();
-            $table->string('taizyo');
-            $table->string('taizyo_number_plate')->nullable();
-            $table->string('taizyo_kotukikan')->nullable();
             $table->timestamps();
             $table->softDeletes()->index();
         });

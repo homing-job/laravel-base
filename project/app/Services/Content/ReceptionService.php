@@ -16,22 +16,22 @@ class ReceptionService {
     public function __construct(ReceptionRepository $repository){
         $this->repository = $repository;
     }
-    
+
     // 入力申込内容セット
     public function setInputData($request){
         $request->session()->put(Session::RECEPTION_INPUT_DATA, $request->all());
     }
-    
+
     // 競技データ取得
     public function getKyogis(){
         return $this->repository->getKyogis()->toArray();
     }
-    
+
     // 競技名称一覧取得
     public function getKyogiNms(){
         return $this->repository->getKyogiNms()->pluck('kyogi_nm','id');
     }
-    
+
     /**
      * 入力用データ取得(入力履歴sessionが存在する場合は履歴を使用)
      *
@@ -68,9 +68,6 @@ class ReceptionService {
     private function defaultReception() :array
     {
         $reception = Utility::getEmptyTableColumns('receptions', 1);
-        $reception['sogou_taizyo'] = Consts::move['公共交通機関'];
-        $reception['raizyo'] = Consts::move['公共交通機関'];
-        $reception['taizyo'] = Consts::move['公共交通機関'];
         return $reception;
     }
 

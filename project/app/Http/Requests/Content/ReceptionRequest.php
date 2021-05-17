@@ -29,13 +29,6 @@ class ReceptionRequest extends FormRequest
         return [
             'reception.kyogi_id' => 'required|integer',
             'reception.kyogi_hope_date' => 'required|date',
-            'reception.raizyo' => 'required|integer|digits_between:1,1',
-            'reception.raizyo_number_plate' => 'nullable|string|max:50',
-            'reception.raizyo_kotukikan' => 'nullable|integer|digits_between:1,1',
-            
-            'reception.taizyo' => 'required|integer|digits_between:1,1',
-            'reception.taizyo_number_plate' => 'nullable|string|max:50',
-            'reception.taizyo_kotukikan' => 'nullable|integer|digits_between:1,1',
 
             'reception_members.*.first_nm' => 'required|string|max:20',
             'reception_members.*.last_nm' => 'required|string|max:20',
@@ -66,12 +59,6 @@ class ReceptionRequest extends FormRequest
         return [
             'reception.kyogi_id' => '競技名',
             'reception.kyogi_hope_date' => '希望日',
-            'reception.raizyo' => '開会式',
-            'reception.raizyo_number_plate' => 'ナンバープレート',
-            'reception.raizyo_kotukikan' => '公共交通機関',
-            'reception.taizyo' => '閉会式',
-            'reception.taizyo_number_plate' => 'ナンバープレート',
-            'reception.taizyo_kotukikan' => '公共交通機関',
 
             'reception_members.*.first_nm' =>  '姓',
             'reception_members.*.last_nm' =>  '名',
@@ -110,30 +97,6 @@ class ReceptionRequest extends FormRequest
                                         ->where('kyogi_date', $kyogi_hope_date)
                                         ->exists();
                 if(!$check) $validator->errors()->add('reception.kyogi_date', '正しい観覧希望日を選択して下さい。');
-            }
-            
-            // 閉会式:自家用車の場合は、ナンバープレートの入力必須
-            $raizyo = $this->input('reception.raizyo');
-            $raizyo_number_plate = $this->input('reception.raizyo_number_plate');
-            if($raizyo == Consts::move['自家用車']){
-                if(empty($raizyo_number_plate)) $validator->errors()->add('reception.raizyo_number_plate', 'ナンバープレートを入力して下さい。');
-            }
-            // 開会式:公共交通期間の場合は、公共交通期間の選択必須
-            $raizyo_kotukikan = $this->input('reception.raizyo_kotukikan');
-            if($raizyo == Consts::move['公共交通機関']){
-                if(empty($raizyo_kotukikan)) $validator->errors()->add('reception.raizyo_kotukikan', '公共交通機関を選択して下さい。');
-            }
-
-            // 閉会式:自家用車の場合は、ナンバープレートの入力必須
-            $taizyo = $this->input('reception.taizyo');
-            $taizyo_number_plate = $this->input('reception.taizyo_number_plate');
-            if($taizyo == Consts::move['自家用車']){
-                if(empty($taizyo_number_plate)) $validator->errors()->add('reception.taizyo_number_plate', 'ナンバープレートを入力して下さい。');
-            }
-            // 閉会式:公共交通期間の場合は、公共交通期間の選択必須
-            $taizyo_kotukikan = $this->input('reception.taizyo_kotukikan');
-            if($taizyo == Consts::move['公共交通機関']){
-                if(empty($taizyo_kotukikan)) $validator->errors()->add('reception.taizyo_kotukikan', '公共交通機関を選択して下さい。');
             }
             // </editor-fold>
 

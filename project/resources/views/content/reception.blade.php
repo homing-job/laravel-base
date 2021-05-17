@@ -3,7 +3,7 @@
 @extends('layouts.content')
 
 @section('content-header')
-    <h3>参加競技情報の入力</h3>
+    <h3>希望競技入力</h3>
 @endsection
 
 @section('content')
