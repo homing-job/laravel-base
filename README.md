@@ -131,14 +131,6 @@ test用ユーザー<br>
     - ElastiCache
 <img src="https://user-images.githubusercontent.com/72111956/108617259-1f89ca00-7458-11eb-8f50-c74be1598966.png">
 
-# laravel
-管理画面は似たような画面で使用頻度が高いので、SPA化を行いサーバとの通信量を最低限に抑えています。
-<br>
-
-# vuejs
-使用画面(申込, 管理画面(SPA))<br>
-<br>
-
 # デプロイ手順
 docker-compose up -d<br>
 docker exec -it db bash<br>
@@ -148,6 +140,8 @@ docker exec -it db bash<br>
 　　- mysql> exit;<br>
 　　exit<br>
 <br>
+
+cp project/.env.sample project/.env<br>
 docker exec -it php bash<br>
 　　composer install<br>
 　　npm install<br>
